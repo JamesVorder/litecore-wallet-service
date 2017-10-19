@@ -2,11 +2,11 @@
 
 var should = require('chai').should();
 var proxyquire = require('proxyquire');
-var bitcore = require('bitcore-lib');
+var litecore = require('litecore-lib');
 var sinon = require('sinon');
 var Service = require('../bitcorenode');
 
-describe('Bitcore Node Service', function() {
+describe('Litecore Node Service', function() {
   describe('#constructor', function() {
     it('https settings from node', function() {
       var node = {
@@ -109,14 +109,14 @@ describe('Bitcore Node Service', function() {
     it('livenet local insight', function() {
       var options = {
         node: {
-          network: bitcore.Networks.livenet,
+          network: litecore.Networks.livenet,
           port: 3001
         }
       };
       var service = new Service(options);
       var config = service._getConfiguration();
       config.blockchainExplorerOpts.livenet.should.deep.equal({
-        'apiPrefix': '/insight-api',
+        'apiPrefix': '/insight-lite-api',
         'provider': 'insight',
         'url': 'http://localhost:3001'
       });
@@ -124,14 +124,14 @@ describe('Bitcore Node Service', function() {
     it('testnet local insight', function() {
       var options = {
         node: {
-          network: bitcore.Networks.testnet,
+          network: litecore.Networks.testnet,
           port: 3001
         }
       };
       var service = new Service(options);
       var config = service._getConfiguration();
       config.blockchainExplorerOpts.testnet.should.deep.equal({
-        'apiPrefix': '/insight-api',
+        'apiPrefix': '/insight-lite-api',
         'provider': 'insight',
         'url': 'http://localhost:3001'
       });

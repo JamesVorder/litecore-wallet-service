@@ -56,14 +56,14 @@ function startInstance(cb) {
 
   expressApp.start(config, function(err) {
     if (err) {
-      log.error('Could not start BWS instance', err);
+      log.error('Could not start LWS instance', err);
       return;
     }
 
     server.listen(port);
 
     var instanceInfo = cluster.worker ? ' [Instance:' + cluster.worker.id + ']' : '';
-    log.info('BWS running ' + instanceInfo);
+    log.info('LWS running ' + instanceInfo);
     return;
   });
 };

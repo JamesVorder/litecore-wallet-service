@@ -54,7 +54,7 @@ describe('Email notifications', function() {
               storage: helpers.getStorage(),
               mailer: mailerStub,
               emailOpts: {
-                from: 'bws@dummy.net',
+                from: 'lws@dummy.net',
                 subjectPrefix: '[test wallet]',
                 publicTxUrlTemplate: {
                   livenet: 'https://insight.bitpay.com/tx/{{txid}}',
@@ -96,7 +96,7 @@ describe('Email notifications', function() {
             });
             _.difference(['copayer2@domain.com', 'copayer3@domain.com'], _.pluck(emails, 'to')).should.be.empty;
             var one = emails[0];
-            one.from.should.equal('bws@dummy.net');
+            one.from.should.equal('lws@dummy.net');
             one.subject.should.contain('New payment proposal');
             should.exist(one.html);
             one.html.indexOf('<html>').should.equal(0);
@@ -197,7 +197,7 @@ describe('Email notifications', function() {
             });
             _.difference(['copayer1@domain.com', 'copayer2@domain.com', 'copayer3@domain.com'], _.pluck(emails, 'to')).should.be.empty;
             var one = emails[0];
-            one.from.should.equal('bws@dummy.net');
+            one.from.should.equal('lws@dummy.net');
             one.subject.should.contain('Payment sent');
             one.text.should.contain('800,000');
             should.exist(one.html);
@@ -252,7 +252,7 @@ describe('Email notifications', function() {
             });
             _.difference(['copayer1@domain.com', 'copayer2@domain.com'], _.pluck(emails, 'to')).should.be.empty;
             var one = emails[0];
-            one.from.should.equal('bws@dummy.net');
+            one.from.should.equal('lws@dummy.net');
             one.subject.should.contain('Payment proposal rejected');
             server.storage.fetchUnsentEmails(function(err, unsent) {
               should.not.exist(err);
@@ -282,7 +282,7 @@ describe('Email notifications', function() {
             });
             _.difference(['copayer1@domain.com', 'copayer2@domain.com', 'copayer3@domain.com'], _.pluck(emails, 'to')).should.be.empty;
             var one = emails[0];
-            one.from.should.equal('bws@dummy.net');
+            one.from.should.equal('lws@dummy.net');
             one.subject.should.contain('New payment received');
             one.text.should.contain('123,000');
             server.storage.fetchUnsentEmails(function(err, unsent) {
@@ -313,7 +313,7 @@ describe('Email notifications', function() {
               calls.length.should.equal(1);
               var email = calls[0].args[0];
               email.to.should.equal('copayer1@domain.com');
-              email.from.should.equal('bws@dummy.net');
+              email.from.should.equal('lws@dummy.net');
               email.subject.should.contain('Transaction confirmed');
               server.storage.fetchUnsentEmails(function(err, unsent) {
                 should.not.exist(err);
@@ -349,7 +349,7 @@ describe('Email notifications', function() {
               });
               _.difference(['copayer2@domain.com', 'copayer3@domain.com'], _.pluck(emails, 'to')).should.be.empty;
               var one = emails[0];
-              one.from.should.equal('bws@dummy.net');
+              one.from.should.equal('lws@dummy.net');
               one.subject.should.contain('New payment received');
               one.text.should.contain('123,000');
               server.storage.fetchUnsentEmails(function(err, unsent) {
@@ -368,7 +368,7 @@ describe('Email notifications', function() {
       server.savePreferences({
         email: 'copayer1@domain.com',
         language: 'es',
-        unit: 'btc',
+        unit: 'ltc',
       }, function(err) {
         server.createAddress({}, function(err, address) {
           should.not.exist(err);
@@ -388,13 +388,13 @@ describe('Email notifications', function() {
               var spanish = _.find(emails, {
                 to: 'copayer1@domain.com'
               });
-              spanish.from.should.equal('bws@dummy.net');
+              spanish.from.should.equal('lws@dummy.net');
               spanish.subject.should.contain('Nuevo pago recibido');
-              spanish.text.should.contain('0.123 BTC');
+              spanish.text.should.contain('0.123 LTC');
               var english = _.find(emails, {
                 to: 'copayer2@domain.com'
               });
-              english.from.should.equal('bws@dummy.net');
+              english.from.should.equal('lws@dummy.net');
               english.subject.should.contain('New payment received');
               english.text.should.contain('123,000 bits');
               done();
@@ -469,7 +469,7 @@ describe('Email notifications', function() {
               storage: helpers.getStorage(),
               mailer: mailerStub,
               emailOpts: {
-                from: 'bws@dummy.net',
+                from: 'lws@dummy.net',
                 subjectPrefix: '[test wallet]',
                 publicTxUrlTemplate: {
                   livenet: 'https://insight.bitpay.com/tx/{{txid}}',

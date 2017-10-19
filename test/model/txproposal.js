@@ -5,7 +5,7 @@ var chai = require('chai');
 var sinon = require('sinon');
 var should = chai.should();
 var TxProposal = require('../../lib/model/txproposal');
-var Bitcore = require('bitcore-lib');
+var Litecore = require('litecore-lib');
 
 describe('TxProposal', function() {
   describe('#create', function() {
@@ -27,7 +27,7 @@ describe('TxProposal', function() {
   });
 
   describe('#getBitcoreTx', function() {
-    it('should create a valid bitcore TX', function() {
+    it('should create a valid litecore TX', function() {
       var txp = TxProposal.fromObj(aTXP());
       var t = txp.getBitcoreTx();
       should.exist(t);

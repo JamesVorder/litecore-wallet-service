@@ -10,7 +10,7 @@ var log = require('npmlog');
 log.debug = log.verbose;
 log.level = 'info';
 
-var Bitcore = require('bitcore-lib');
+var Litecore = require('litecore-lib');
 
 var Common = require('../../lib/common');
 var Utils = Common.Utils;
@@ -44,7 +44,7 @@ describe('Wallet service', function() {
 
   describe('#getServiceVersion', function() {
     it('should get version from package', function() {
-      WalletService.getServiceVersion().should.equal('bws-' + require('../../package').version);
+      WalletService.getServiceVersion().should.equal('lws-' + require('../../package').version);
     });
   });
 
@@ -1600,7 +1600,7 @@ describe('Wallet service', function() {
     };
 
     beforeEach(function() {
-      reqPrivKey = new Bitcore.PrivateKey();
+      reqPrivKey = new Litecore.PrivateKey();
       var requestPubKey = reqPrivKey.toPublicKey();
 
       var xPrivKey = TestData.copayers[0].xPrivKey_44H_0H_0H;
@@ -1661,7 +1661,7 @@ describe('Wallet service', function() {
           should.not.exist(err);
           server.getBalance(res.wallet.walletId, function(err, bal) {
             should.not.exist(err);
-            var privKey = new Bitcore.PrivateKey();
+            var privKey = new Litecore.PrivateKey();
             (getAuthServer(opts.copayerId, privKey, function(err, server2) {
               err.code.should.equal('NOT_AUTHORIZED');
               done();
@@ -3077,9 +3077,9 @@ describe('Wallet service', function() {
           });
         });
       });
-      it('should fail gracefully when bitcore throws exception on raw tx creation', function(done) {
+      it('should fail gracefully when litecore throws exception on raw tx creation', function(done) {
         helpers.stubUtxos(server, wallet, 1, function() {
-          var bitcoreStub = sinon.stub(Bitcore, 'Transaction');
+          var bitcoreStub = sinon.stub(Litecore, 'Transaction');
           bitcoreStub.throws({
             name: 'dummy',
             message: 'dummy exception'
@@ -3243,7 +3243,7 @@ describe('Wallet service', function() {
         });
       });
       it('should accept a tx proposal signed with a custom key', function(done) {
-        var reqPrivKey = new Bitcore.PrivateKey();
+        var reqPrivKey = new Litecore.PrivateKey();
         var reqPubKey = reqPrivKey.toPublicKey().toString();
 
         var xPrivKey = TestData.copayers[0].xPrivKey_44H_0H_0H;
