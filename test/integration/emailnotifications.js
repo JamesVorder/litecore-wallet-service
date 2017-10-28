@@ -412,7 +412,7 @@ describe('Email notifications', function() {
         storage: helpers.getStorage(),
         mailer: mailerStub,
         emailOpts: {
-          from: 'bws2@dummy.net',
+          from: 'lws2@dummy.net',
           subjectPrefix: '[test wallet 2]',
         },
       }, function(err) {
