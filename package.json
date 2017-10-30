@@ -70,6 +70,16 @@
   },
   "bitcoreNode": "./bitcorenode",
   "contributors": [{
-    "name": "James Vorderbruggen"
+    "name": "Braydon Fuller",
+    "email": "braydon@bitpay.com"
+  }, {
+    "name": "Ivan Socolsky",
+    "email": "ivan@bitpay.com"
+  }, {
+    "name": "Matias Alejo Garcia",
+    "email": "ematiu@gmail.com"
+  }, {
+    "name": "James Vorderbruggen",
+    "email": "jamesvorder@gmail.com"
   }]
 }
