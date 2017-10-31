@@ -37,7 +37,7 @@ describe('Email notifications', function() {
             helpers.getAuthServer(copayer.id, function(server) {
               server.savePreferences({
                 email: 'copayer' + (++i) + '@domain.com',
-                unit: 'bit',
+                unit: 'lite',
               }, next);
             });
           }, function(err) {
@@ -452,7 +452,7 @@ describe('Email notifications', function() {
             helpers.getAuthServer(copayer.id, function(server) {
               server.savePreferences({
                 email: 'copayer' + (++i) + '@domain.com',
-                unit: 'bit',
+                unit: 'lite',
               }, next);
             });
           }, function(err) {
