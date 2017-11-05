@@ -82,16 +82,16 @@ describe('Utils', function() {
   describe('#formatAmount', function() {
     it('should successfully format amount', function() {
       var cases = [{
-        args: [1, 'lite'],
+        args: [1, 'bit'],
         expected: '0',
       }, {
         args: [1, 'ltc'],
         expected: '0.00',
       }, {
-        args: [0, 'lite'],
+        args: [0, 'bit'],
         expected: '0',
       }, {
-        args: [12345678, 'lite'],
+        args: [12345678, 'bit'],
         expected: '123,457',
       }, {
         args: [12345678, 'ltc'],
@@ -109,7 +109,7 @@ describe('Utils', function() {
         args: [1234567899999, 'ltc'],
         expected: '12,345.679',
       }, {
-        args: [12345678, 'lite', {
+        args: [12345678, 'bit', {
           thousandsSeparator: '.'
         }],
         expected: '123.457',
