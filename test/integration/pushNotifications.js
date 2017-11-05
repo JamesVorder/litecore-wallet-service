@@ -44,7 +44,7 @@ describe('Push notifications', function() {
                   server.savePreferences({
                     email: 'copayer' + (++i) + '@domain.com',
                     language: 'en',
-                    unit: 'lite',
+                    unit: 'bit',
                   }, done);
                 },
                 function(done) {
@@ -89,7 +89,7 @@ describe('Push notifications', function() {
     it('should build each notifications using preferences of the copayers', function(done) {
       server.savePreferences({
         language: 'en',
-        unit: 'lite',
+        unit: 'bit',
       }, function(err) {
         server.createAddress({}, function(err, address) {
           should.not.exist(err);
@@ -198,7 +198,7 @@ describe('Push notifications', function() {
                   server.savePreferences({
                     email: 'copayer' + (++i) + '@domain.com',
                     language: 'en',
-                    unit: 'lite',
+                    unit: 'bit',
                   }, done);
                 },
                 function(done) {
