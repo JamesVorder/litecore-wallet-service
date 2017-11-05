@@ -236,12 +236,9 @@ helpers._parseAmount = function(str) {
     case 'ltc':
       result.amount = Utils.strip(+match[2] * 1e8);
       break;
-    case 'lite':
-      result.amount = Utils.strip(+match[2] * 1e6);
-      break;
-    case 'phot':
+    case 'bit':
       result.amount = Utils.strip(+match[2] * 1e2);
-      break;
+      break
     case 'sat':
       result.amount = Utils.strip(+match[2]);
       break;
