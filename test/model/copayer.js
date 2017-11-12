@@ -23,7 +23,8 @@ describe('Copayer', function() {
       should.exist(c.requestPubKeys);
       c.requestPubKeys.length.should.equal(1);
       var a1 = c.createAddress(w, true);
-      a1.address.should.equal('3AXmDe2FkWY9g5LpRaTs1U7pXKtkNm3NBf');
+      //a1.address.should.equal('3AXmDe2FkWY9g5LpRaTs1U7pXKtkNm3NBf');
+      a1.address.should.equal('MGjuXXSDhdPaUaciXTTCq7NDr2VCNjgrk3');
       a1.path.should.equal('m/2/1/0');
       a1.createdOn.should.be.above(1);
       var a2 = c.createAddress(w, true);
@@ -45,6 +46,7 @@ var testWallet = {
   m: 2,
   n: 3,
   status: 'complete',
+  network: 'livenet',
   publicKeyRing: [{
     xPubKey: 'xpub661MyMwAqRbcFLRkhYzK8eQdoywNHJVsJCMQNDoMks5bZymuMcyDgYfnVQYq2Q9npnVmdTAthYGc3N3uxm5sEdnTpSqBc4YYTAhNnoSxCm9',
     requestPubKey: '03814ac7decf64321a3c6967bfb746112fdb5b583531cd512cc3787eaf578947dc'

@@ -57,8 +57,8 @@ describe('Email notifications', function() {
                 from: 'lws@dummy.net',
                 subjectPrefix: '[test wallet]',
                 publicTxUrlTemplate: {
-                  livenet: 'https://insight.bitpay.com/tx/{{txid}}',
-                  testnet: 'https://test-insight.bitpay.com/tx/{{txid}}',
+                  livenet: 'https://insight.litecore.io/tx/{{txid}}',
+                  testnet: 'https://testnet.litecore.io/tx/{{txid}}',
                 },
               },
             }, function(err) {
@@ -201,7 +201,7 @@ describe('Email notifications', function() {
             one.subject.should.contain('Payment sent');
             one.text.should.contain('800,000');
             should.exist(one.html);
-            one.html.should.contain('https://insight.bitpay.com/tx/' + txp.txid);
+            one.html.should.contain('https://insight.litecore.io/tx/' + txp.txid);
             server.storage.fetchUnsentEmails(function(err, unsent) {
               should.not.exist(err);
               unsent.should.be.empty;
@@ -472,8 +472,8 @@ describe('Email notifications', function() {
                 from: 'lws@dummy.net',
                 subjectPrefix: '[test wallet]',
                 publicTxUrlTemplate: {
-                  livenet: 'https://insight.bitpay.com/tx/{{txid}}',
-                  testnet: 'https://test-insight.bitpay.com/tx/{{txid}}',
+                  livenet: 'https://insight.litecore.io/tx/{{txid}}',
+                  testnet: 'https://testnet.litecore.io/tx/{{txid}}',
                 },
               },
             }, function(err) {
