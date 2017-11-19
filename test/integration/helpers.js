@@ -437,7 +437,7 @@ helpers.historyCacheTest = function(items) {
       txid: "0279ef7b21630f859deb723e28beac9e7011660bd1346c2da40321d2f7e34f04",
       vout: 0,
       n: 0,
-      addr: "2NAVFnsHqy5JvqDJydbHPx393LFqFFBQ89V",
+      addr: "mq2WpFDk2Ee2qJxMZMqZyVTY5ysseciG7Z",
       valueSat: 45753,
       value: 0.00045753,
     }],
@@ -446,7 +446,7 @@ helpers.historyCacheTest = function(items) {
       n: 0,
       scriptPubKey: {
         addresses: [
-          "2N7GT7XaN637eBFMmeczton2aZz5rfRdZso"
+          "muiA8zb9At2zpz2QQs8tNp2yGebVyyJuzk"
         ]
       }
     }, {

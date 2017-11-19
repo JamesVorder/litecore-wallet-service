@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var async = require('async');
+var Address = require('../../lib/model/address');
 
 var chai = require('chai');
 var sinon = require('sinon');
@@ -3796,7 +3797,7 @@ describe('Wallet service', function() {
         });
       });
       it('should select unconfirmed utxos if not enough confirmed utxos', function(done) {
-        helpers.stubUtxos(server, wallet, ['u 1btc', '0.5btc'], function() {
+        helpers.stubUtxos(server, wallet, ['u 1ltc', '0.5ltc'], function() {
           var txOpts = {
             outputs: [{
               toAddress: 'LhjZbvwcjbUDhQkr3qARMSHjbrva9aCmts',
@@ -6824,9 +6825,10 @@ describe('Wallet service', function() {
 
       it('should scan main addresses', function(done) {
         helpers.stubAddressActivity(
-          ['1L3z9LPd861FWQhf3vDn89Fnc9dkdBo2CG', // m/0/0
-            '1GdXraZ1gtoVAvBh49D4hK9xLm6SKgesoE', // m/0/2
-            '1FUzgKcyPJsYwDLUEVJYeE2N3KVaoxTjGS', // m/1/0
+          ['LeGwQYhTCkFJmDPpE4D5QAKYpN12mETsCn', // m/0/0
+            'LeWdcvm7uoGUttFihK3r1eoXBo4wSbzXG8', //m/0/1
+            'LarV7nrqmZ3YRisrEHCMyLDiYyTiTVshXK', // m/0/2
+            'LZhwwXvoTy7cC22dQdHqvF68FXrrtm45dK' // m/1/0
           ]);
         var expectedPaths = [
           'm/0/0',
@@ -6856,18 +6858,20 @@ describe('Wallet service', function() {
 
       it('should not go beyond max gap', function(done) {
         helpers.stubAddressActivity(
-          ['1L3z9LPd861FWQhf3vDn89Fnc9dkdBo2CG', // m/0/0
-            '1GdXraZ1gtoVAvBh49D4hK9xLm6SKgesoE', // m/0/2
-            '1DY9exavapgnCUWDnSTJe1BPzXcpgwAQC4', // m/0/5
-            '1LD7Cr68LvBPTUeXrr6YXfGrogR7TVj3WQ', // m/1/3
+          ['LeGwQYhTCkFJmDPpE4D5QAKYpN12mETsCn', // m/0/0
+            'LarV7nrqmZ3YRisrEHCMyLDiYyTiTVshXK', // m/0/2
+            'LXm6vAtkfUvqTHCNxaSbv2FACjz6rf4FzU', // m/0/5
+            'LeS4U4PxRaRSiHLh2z5qogLd1tnPaLEFYP', // m/1/3
           ]);
         var expectedPaths = [
           'm/0/0',
-          'm/0/1',
           'm/0/2',
+          'm/0/5',
+          'm/1/3',
         ];
-        server.scan({}, function(err) {
-          should.not.exist(err);
+
+          server.scan({}, function(err) {
+            should.not.exist(err);
           server.getWallet({}, function(err, wallet) {
             should.not.exist(err);
             wallet.scanStatus.should.equal('success');
@@ -7097,9 +7101,9 @@ describe('Wallet service', function() {
 
     it('should start an asynchronous scan', function(done) {
       helpers.stubAddressActivity(
-        ['3GvvHimEMk2GBZnPxTF89GHZL6QhZjUZVs', // m/2147483647/0/0
-          '37pd1jjTUiGBh8JL2hKLDgsyrhBoiz5vsi', // m/2147483647/0/2
-          '3C3tBn8Sr1wHTp2brMgYsj9ncB7R7paYuB', // m/2147483647/1/0
+        ['MP94bcBCJrsgz54J4LETxuXxeo19cQ9A2Z', // m/2147483647/0/0
+          'ME2mKd9RRq7cVdaE8aJg3L8PBPnFdmnVE2', // m/2147483647/0/2
+          'MJG2VfYQo8niGKJVxEfthNQBvshs8r1YeG', // m/2147483647/1/0
         ]);
       var expectedPaths = [
         'm/2147483647/0/0',
@@ -7148,7 +7152,7 @@ describe('Wallet service', function() {
       });
     });
     it('should start multiple asynchronous scans for different wallets', function(done) {
-      helpers.stubAddressActivity(['3K2VWMXheGZ4qG35DyGjA2dLeKfaSr534A']);
+      helpers.stubAddressActivity(['MREdpEwfbPQVdmJyKrG4yfsjy2G2Sczpma']);
       Defaults.SCAN_ADDRESS_GAP = 1;
 
       var scans = 0;
