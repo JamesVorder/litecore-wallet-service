@@ -1293,7 +1293,7 @@ describe('Wallet service', function() {
               address.path.should.equal('m/0/2');
 
               helpers.stubAddressActivity([
-                '1GdXraZ1gtoVAvBh49D4hK9xLm6SKgesoE', // m/0/2
+                'LeGwQYhTCkFJmDPpE4D5QAKYpN12mETsCn', // m/0/2
               ]);
               server.createAddress({}, function(err, address) {
                 should.not.exist(err);
@@ -6857,6 +6857,10 @@ describe('Wallet service', function() {
       });
 
       it('should not go beyond max gap', function(done) {
+        var addy1 = Address.derive(wallet.id, 'P2PKH', wallet.publicKeyRing, 'm/0/0', wallet.m, wallet.network, false);
+        var addy2 = Address.derive(wallet.id, 'P2PKH', wallet.publicKeyRing, 'm/0/2', wallet.m, wallet.network, false);
+        var addy3 = Address.derive(wallet.id, 'P2PKH', wallet.publicKeyRing, 'm/0/5', wallet.m, wallet.network, false);
+        var addy4 = Address.derive(wallet.id, 'P2PKH', wallet.publicKeyRing, 'm/1/3', wallet.m, wallet.network, false);
         helpers.stubAddressActivity(
           ['LeGwQYhTCkFJmDPpE4D5QAKYpN12mETsCn', // m/0/0
             'LarV7nrqmZ3YRisrEHCMyLDiYyTiTVshXK', // m/0/2
@@ -6869,6 +6873,10 @@ describe('Wallet service', function() {
           'm/0/5',
           'm/1/3',
         ];
+
+        blockchainExplorer.getAddressActivity('1DY9exavapgnCUWDnSTJe1BPzXcpgwAQC4', function(){
+          return;
+        });
 
           server.scan({}, function(err) {
             should.not.exist(err);
@@ -7020,9 +7028,9 @@ describe('Wallet service', function() {
 
       it('should scan main addresses', function(done) {
         helpers.stubAddressActivity(
-          ['39AA1Y2VvPJhV3RFbc7cKbUax1WgkPwweR', // m/2147483647/0/0
-            '3QX2MNSijnhCALBmUVnDo5UGPj3SEGASWx', // m/2147483647/0/2
-            '3MzGaz4KKX66w8ShKaR536ZqzVvREBqqYu', // m/2147483647/1/0
+          ['MFNJKRSTsWA8HYh9hV6x9EizGi78kHPx2V', // m/2147483647/0/0
+            'MWjAfFrgguYcxqTfaNmZciifiRdtE8RQcJ', // m/2147483647/0/2
+            'MUCQtsUHGdwXjdibRTQQrjpFKCWsDYEKCK', // m/2147483647/1/0
           ]);
         var expectedPaths = [
           'm/2147483647/0/0',
@@ -7051,11 +7059,11 @@ describe('Wallet service', function() {
       });
       it('should scan main addresses & copayer addresses', function(done) {
         helpers.stubAddressActivity(
-          ['39AA1Y2VvPJhV3RFbc7cKbUax1WgkPwweR', // m/2147483647/0/0
-            '3MzGaz4KKX66w8ShKaR536ZqzVvREBqqYu', // m/2147483647/1/0
-            '3BYoynejwBH9q4Jhr9m9P5YTnLTu57US6g', // m/0/0/1
-            '37Pb8c32hzm16tCZaVHj4Dtjva45L2a3A3', // m/1/1/0
-            '32TB2n283YsXdseMqUm9zHSRcfS5JxTWxx', // m/1/0/0
+          ['MFNJKRSTsWA8HYh9hV6x9EizGi78kHPx2V', // m/2147483647/0/0
+            'MUCQtsUHGdwXjdibRTQQrjpFKCWsDYEKCK', // m/2147483647/1/0
+            'MHkxHg4htJ8adZabx2kVCins734M2Wf9o2', // m/0/0/1
+            'MDbjSVSzf7cRuPUTgNH4ss99FGeXQAadst', // m/1/1/0
+            'M8fKLfS5zfixSNvFwMkVovgpwN2XMGQXBS', // m/1/0/0
           ]);
         var expectedPaths = [
           'm/2147483647/0/0',
